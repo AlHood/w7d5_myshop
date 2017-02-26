@@ -40,6 +40,15 @@ voomFit.newSale(zarya, 300);
     assertEquals(200, result);
 }
 
+@Test public void test_CustomerCanRefund() {
+    voomFit.newSale(zarya, 300);
+    voomFit.newRefund(zarya, 0);
+    result = masterCard.getAvailableFunds();
+assertEquals(500, result);
+    arraylistResult = voomFit.getRefunds();
+    assertEquals( 1, arraylistResult.size());
+}
+
 
 
 }

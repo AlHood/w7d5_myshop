@@ -52,7 +52,7 @@ public void newSale(Customer customer, int value) {
     tempTrans.setTransactionType(REFUND);
         addTransaction(tempTrans);
 
-//        customer.refund( 0 - tempTrans.getValue());
+        customer.refund( 0 - tempTrans.getValue());
     }
 
 
