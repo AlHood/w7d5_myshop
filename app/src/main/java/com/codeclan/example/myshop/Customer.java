@@ -39,18 +39,20 @@ public void addPaymentMethod(Payment paymentName) {
     }
 
 
-    public void pay(int value) {
+    public boolean pay(int value) {
         for (Payment paymeth : paymentMethods) {
              if (paymeth.getClass() == this.preferredPayment) {
                 if (paymeth.paymentPossible(value)) {
                     paymeth.payCard(value);
+                    return true;
                 }
-
-
+return false;
              }
+
+
         }
 
-
+return false;
     }
 
 

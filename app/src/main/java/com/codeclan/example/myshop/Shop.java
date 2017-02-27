@@ -29,9 +29,9 @@ public class Shop {
     }
 
 public void addTransaction(Transaction transaction) {
-    if (transaction.getTransactionType() == SALE ) {
+    if (transaction.getTransactionType() == TransactionType.SALE ) {
         this.sales.add(transaction);}
-        else if (transaction.getTransactionType() == REFUND) {
+        else if (transaction.getTransactionType() == TransactionType.REFUND) {
             this.refunds.add(transaction);
         }
 //Alternatively, do nothing!
@@ -40,16 +40,16 @@ public void addTransaction(Transaction transaction) {
 
 
 public void newSale(Customer customer, int value) {
-    customer.pay(value);
- tempTrans = new Transaction(value, SALE);
-    addTransaction(tempTrans);
+    if (customer.pay(value)) {
+        tempTrans = new Transaction(value, TransactionType.SALE);
+        addTransaction(tempTrans);
+    }
 }
-
 
     public void newRefund(Customer customer, int refundIndex){
       tempTrans = this.sales.get(refundIndex);
         this.sales.remove(refundIndex);
-    tempTrans.setTransactionType(REFUND);
+    tempTrans.setTransactionType(TransactionType.REFUND);
         addTransaction(tempTrans);
 
         customer.refund( 0 - tempTrans.getValue());
